@@ -6,3 +6,5 @@ database:
   password: 123456
 #  driverClassName:
   initSize: 8
+logging:
+  config: classpath:logback-boot.xml
