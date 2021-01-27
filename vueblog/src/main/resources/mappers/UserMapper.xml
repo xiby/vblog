@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tech.xiby.vueblog.mappers.UserMapper">
+    <select id="getByUser" parameterType="tech.xiby.vueblog.domain.dto.User" resultType="tech.xiby.vueblog.domain.po.UserInfo">
+        select name as "name", password as "pwd", lastlogin as "lastLoginDate", liked as "liked" from t_user where name = #{name} and password = #{pwd};
+    </select>
+</mapper>
