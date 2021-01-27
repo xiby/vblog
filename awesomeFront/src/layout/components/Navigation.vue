@@ -1,0 +1,288 @@
+<template>
+    <div class="headBack">
+        <el-row class="container">
+            <el-col :span="24">
+                <div class="headBox">
+                    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" :router="true">
+                        <el-menu-item index="/home">首页</el-menu-item>
+                        <!-- <el-submenu index="/share">
+                            <template slot="title">分类</template>
+                            <el-menu-item v-for="(item,index) in classObjList" :key="'class1'+index" :index="'/share?classId='+item.classId">{{item.cateName}}</el-menu-item>
+                        </el-submenu> -->
+                        <el-menu-item index="/friendslinks">伙伴</el-menu-item>
+                        <el-menu-item index="/message">留言板</el-menu-item>
+                        <el-menu-item index="/aboutme">关于</el-menu-item>
+                    </el-menu>
+
+                    <div index = "" class="searchbox">
+                        <i class="el-icon-search searchicon"></i>
+                        <div class="searchinput" :class="input?'hasSearched':''">
+                            <el-input placeholder="搜索" icon="search" v-model="input" :on-icon-click="searchEnterFun" @keyup.enter.native="searchEnterFun" @change="searchChangeFun">
+                            </el-input>
+                        </div>
+                    </div>
+
+                    <div class="userInfo">
+                        <div v-show="!haslogin" class="nologin">
+								<a href="javascript:void(0);" @click="loginfunction(1)">登录&nbsp;</a>|<a href="javascript:void(0);" @click="loginfunction(0)">&nbsp;注册</a>
+						</div>
+
+                        <div v-show="haslogin" class="haslogin">
+								<i class="fa fa-fw fa-user-circle userImg"></i>
+								<ul class="haslogin-info">
+									<li>
+										<a href="#/UserInfo">个人中心</a>
+									</li>
+									<li>
+										<a href="#/LikeCollect?like=1">喜欢列表</a>
+									</li>
+									<li>
+										<a href="#/LikeCollect?like=2">收藏列表</a>
+									</li>
+									<li>
+										<a href="javascript:void(0);" @click="userlogout">退出登录</a>
+									</li>
+								</ul>
+							</div>
+                    </div>
+                </div>
+            </el-col>
+        </el-row>
+
+    </div>
+</template>
+
+<script>
+export default {
+    data(){
+        return{
+            'activeIndex': '/',
+            'input': '',
+            'haslogin': false
+        }
+    },
+    methods:{
+        searchChangeFun(e) { //input change 事件
+			// console.log(e)
+			if (this.input == '') {
+				this.$store.state.keywords = '';
+				this.$router.push({path:'/'});
+			}
+		},
+		searchEnterFun: function(e) { //input 输入 enter
+			 var keyCode = window.event? e.keyCode:e.which;
+			// console.log('CLICK', this.input, keyCode)
+            //  console.log('回车搜索',keyCode,e);
+             if(this.input){
+				 this.$store.state.keywords = this.input;
+                 this.$router.push({path:'/Share?keywords='+this.input});
+             }
+		},
+		handleSelect(key, keyPath) { //pc菜单选择
+			//    console.log(key, keyPath);
+        },
+        loginfunction: function(msg){
+			localStorage.setItem('logUrl', this.$route.fullPath);
+			if(msg == 0){
+				this.$router.push({
+					path: 'login?login=0'
+				})
+			}else{
+				this.$router.push({
+					path: '/login?login=1'
+				})
+			}
+        },
+        userlogout: function(cookie){
+
+        }
+    }
+}
+</script>
+<style scoped>
+/*********头部导航栏********/
+
+/*头部导航栏盒子*/
+
+.headBack {
+	width: 100%;
+	background: rgba(40, 42, 44, 0.6);
+	/*margin-bottom:30px;*/
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04);
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	z-index: 100;
+}
+
+.headBox li.is-active {
+	/*background: #48456C;*/
+	background: rgba(73, 69, 107, 0.7);
+}
+
+.el-menu--horizontal>.el-submenu.is-active .el-submenu__title {
+	border-bottom: none!important;
+}
+
+.headBox .el-menu {
+	background: transparent;
+	border-bottom: none!important;
+}
+
+.headBox .el-menu-demo li.el-menu-item,
+.headBox .el-menu--horizontal .el-submenu .el-submenu__title {
+	height: 38px;
+	line-height: 38px;
+	border-bottom: none!important;
+
+}
+
+.headBox .el-submenu li.el-menu-item {
+	height: 38px;
+	line-height: 38px;
+}
+
+.headBox li .fa-wa {
+	vertical-align: baseline;
+}
+
+.headBox ul li.el-menu-item,
+.headBox ul li.el-menu-item.is-active,
+.headBox ul li.el-menu-item:hover,
+.headBox .el-submenu div.el-submenu__title,
+.headBox .el-submenu__title i.el-submenu__icon-arrow {
+	color: #fff;
+}
+
+.headBox .el-menu--horizontal .el-submenu>.el-menu {
+	top: 38px;
+	border: none;
+	padding: 0;
+}
+
+.headBox>ul li.el-menu-item:hover,
+.headBox>ul li.el-submenu:hover .el-submenu__title {
+	background: #48456C;
+	border-bottom: none;
+}
+
+.headBox>ul .el-submenu .el-menu,
+.headBox>ul .el-submenu .el-menu .el-menu-item {
+	background: #48456C;
+}
+
+.headBox>ul .el-submenu .el-menu .el-menu-item {
+	min-width: 0;
+}
+
+.headBox>ul .el-submenu .el-menu .el-menu-item:hover {
+	background: #64609E;
+}
+
+.headBox .searchbox{
+    padding: 0;
+	max-width: 170px;
+	/*min-width: 30px;*/
+	height: 100%;
+	line-height: 38px;
+	position: absolute;
+	top: 0;
+	right: 20px;
+    /* left: -10; */
+	cursor: pointer;
+}
+.headBox .searchbox:hover .searchinput{
+    opacity: 1;
+	/*transform: scaleX(1);*/
+	visibility: visible;
+}
+
+.headBox .searchbox i.searchicon{
+    color: #fff;
+	padding-left: 20px;
+}
+
+.headBox .searchbox .searchinput{
+    width: 180px;
+	padding: 10px 20px 10px 20px;
+	background: rgba(40, 42, 44, 0.6);
+	border-radius: 0 0 2px 2px;
+	position: absolute;
+	right: 0;
+	top: 38px;
+	opacity: 0;
+	visibility: hidden;
+	/*transform: scaleX(0);*/
+	transform-origin: right;
+	transition: all 0.3s ease-out;
+}
+
+.headBox .searchbox .hasSearched{
+    opacity: 1;
+	/*transform: scaleX(1);*/
+	visibility: visible;
+}
+
+.headBox .el-input__inner {
+	height: 30px;
+	border: none;
+	background: #fff;
+	/*border: 1px solid #333;*/
+	border-radius: 2px;
+	padding-right: 10px;
+}
+
+.headBox .userInfo {
+	height: 100%;
+	line-height: 38px;
+	position: absolute;
+	right: 60px;
+	top: 0;
+	color: #fff;
+}
+
+.headBox .userInfo a {
+	color: #fff;
+	font-size: 13px;
+	transition: all 0.2s ease-out;
+}
+
+.headBox .userInfo a:hover {
+	color: #48456C;
+}
+
+.headBox .nologin {
+	text-align: right;
+}
+
+.headBox .haslogin {
+	text-align: right;
+	position: relative;
+	min-width: 80px;
+	cursor: pointer;
+}
+
+.headBox .haslogin:hover ul {
+	visibility: visible;
+	opacity: 1;
+}
+
+.headBox .haslogin ul {
+	background: rgba(40, 42, 44, 0.6);
+	padding: 5px 10px;
+	position: absolute;
+	right: 0;
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.3s ease-out;
+}
+
+.headBox .haslogin ul li {
+	border-bottom: 1px solid #48456C;
+}
+
+.headBox .haslogin ul li:last-child {
+	border-bottom: 1px solid transparent;
+}
+</style>
