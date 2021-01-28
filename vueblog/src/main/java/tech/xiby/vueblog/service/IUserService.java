@@ -1,6 +1,5 @@
 package tech.xiby.vueblog.service;
 
-import tech.xiby.vueblog.domain.dto.User;
 import tech.xiby.vueblog.domain.po.UserInfo;
 
 /**
@@ -13,5 +12,12 @@ public interface IUserService {
      * @param user 登录的用户信息
      * @return UserInfo 返回登陆成功的用户信息
      */
-    UserInfo login(User user);
+    UserInfo login(UserInfo user);
+
+    /**
+
+     * 用户注册
+     * @param user 注册的用户信息
+     */
+    void register(UserInfo user);
 }

@@ -25,3 +25,4 @@ hs_err_pid*
 vueblog/.idea
 awsomeFront/node_modules/
 vueblog/target/
+vueblog/log

@@ -1,7 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="tech.xiby.vueblog.mappers.UserMapper">
-    <select id="getByUser" parameterType="tech.xiby.vueblog.domain.dto.User" resultType="tech.xiby.vueblog.domain.po.UserInfo">
-        select name as "name", password as "pwd", lastlogin as "lastLoginDate", liked as "liked" from t_user where name = #{name} and password = #{pwd};
+    <select id="getByUser" parameterType="tech.xiby.vueblog.domain.po.UserInfo"
+            resultType="tech.xiby.vueblog.domain.po.UserInfo">
+        select
+               id as "id",
+               name as "name",
+               password as "pwd",
+               lastlogin as "lastLoginDate",
+               liked as "liked",
+               token as "token"
+        from t_user
+        where
+              email = #{email} and password = #{pwd};
     </select>
+    <select id="getByToken" resultType="tech.xiby.vueblog.domain.po.UserInfo">
+        select
+            id as "id",
+            name as "name",
+            lastlogin as "lastLoginDate",
+            liked as "liked",
+            token as "token"
+        from t_user
+        where
+            token = #{token}
+    </select>
+
+    <select id="getByEmail" resultType="tech.xiby.vueblog.domain.po.UserInfo">
+        select
+            id as "id",
+            name as "name",
+            lastlogin as "lastLoginDate",
+            liked as "liked",
+            token as "token"
+        from t_user
+        where
+            email = #{email}
+    </select>
+
+    <update id="updateToken">
+        update t_user set token = #{token}, lastlogin = NOW() where id = #{userId};
+    </update>
+
+    <insert id="insert" parameterType="tech.xiby.vueblog.domain.po.UserInfo">
+        insert into t_user(name, email, password)
+        values
+        (#{name}, #{email}, #{pwd});
+    </insert>
 </mapper>

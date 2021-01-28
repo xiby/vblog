@@ -23,9 +23,15 @@ public class UserInfo {
     private String pwd;
 
     /**
+     * 邮箱
+     */
+    private String email;
+    /**
      * 上次登录时间
      */
     private Date lastLoginDate;
+
+    private String token;
 
     private Long liked;
 
@@ -67,5 +73,21 @@ public class UserInfo {
 
     public void setLiked(Long liked) {
         this.liked = liked;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
