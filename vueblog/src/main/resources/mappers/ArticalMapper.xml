@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tech.xiby.vueblog.mappers.ArticalMapper">
+    <select id="get" resultType="tech.xiby.vueblog.domain.po.ArticalInfo">
+        select
+            id as "id",
+            user as "user",
+            title as "title",
+            summary as "summary",
+            content as "content",
+            liked as "liked",
+            lastedit as "lastEdit",
+            deleted as "deleted",
+            createtime as "createTime"
+        from
+            t_artical
+        where
+            id = #{id} and deleted = "N"
+    </select>
+    <insert id="save" parameterType="tech.xiby.vueblog.domain.po.ArticalInfo">
+        insert into
+            t_artical
+        (user, title, summary, content, lastedit, createtime)
+        values
+        (#{user}, #{title}, #{summary}, #{content}, NOW(), NOW())
+    </insert>
+</mapper>
