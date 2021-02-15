@@ -16,7 +16,6 @@ import tech.xiby.vueblog.service.IUserService;
  */
 @RestController
 @RequestMapping("/user")
-@Service
 public class UserController {
     @Autowired
     private IUserService userService;
