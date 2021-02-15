@@ -1,8 +1,14 @@
 server:
   port: 8090
 database:
-  url: jdbc:mysql://127.0.0.1:3306/vblog
+  url: jdbc:mysql://127.0.0.1:3306/vblog?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
   userName: root
   password: 123456
 #  driverClassName:
   initSize: 8
+  driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mappers/*Mapper.xml
+  type-aliases-package: tech.xiby.vueblog.domain.po
+logging:
+  config: classpath:logback-boot.xml

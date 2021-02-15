@@ -52,4 +52,17 @@ public class ResponseInfo<T> {
         ret.setBody(body);
         return ret;
     }
+
+    public static  ResponseInfo EMPTY_RESPONSE(){
+        ResponseInfo ret = new ResponseInfo();
+        ret.setCode(CODE_OK);
+        return ret;
+    }
+
+    public static ResponseInfo ERROR(int code, String msg){
+        ResponseInfo ret = new ResponseInfo();
+        ret.setCode(code);
+        ret.setMsg(msg);
+        return ret;
+    }
 }

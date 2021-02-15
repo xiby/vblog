@@ -1,8 +1,8 @@
 package tech.xiby.vueblog.domain.dto;
 
 /**
- * 与前端交互的用户信息
+ * 文章搜索参数
  * @author xiby
  */
-public class User {
+public class ArticalSearchParam {
 }
