@@ -49,6 +49,8 @@
           <h3><a href="">忘记密码？</a></h3>
           <div class="lr-btn tcolors-bg" @click="gotoHome">登录</div>
           <!-- end of login -->
+          <div class="loginFooter">
+            </div>
         </div>
       </div>
     </div>
@@ -136,66 +138,76 @@ export default {
 </script>
 
 <style>
-.loginTitle{
-    text-align: center;
-    font-size: 26px;
-    padding-top: 50px;
-    margin-bottom: 20px;
+.loginTitle {
+  text-align: center;
+  font-size: 26px;
+  padding-top: 50px;
+  margin-bottom: 20px;
 }
-.loginBox{
-    background: #fff;
-    padding: 40px;
-    max-width: 320px;
-    margin: 0 auto;
+.loginBox {
+  background: #fff;
+  padding: 40px;
+  max-width: 320px;
+  margin: 0 auto;
 }
-.loginBox{
-    padding-bottom: 0;
-}
-
-.lr-title{
-    position: relative;
-    height: 32px;
-    line-height: 32px;
-    margin-bottom: 20px;
-}
-.lr-title h1{
-    font-size: 24px;
-    color: #666;
-    font-weight: bold;
-}
-.lr-title p{
-    font-size: 12px;
-    color: #999;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-.lr-btn{
-    color: #fff;
-    text-align: center;
-    letter-spacing: 5px;
-    padding: 8px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 30px;
+.loginBox {
+  padding-bottom: 0;
 }
 
-.loginBox .el-input{
-    margin-bottom: 20px;
+.lr-title {
+  position: relative;
+  height: 32px;
+  line-height: 32px;
+  margin-bottom: 20px;
 }
-.loginBox .el-alert{
-    top: -18px;
-    background: #888;
+.lr-title h1 {
+  font-size: 24px;
+  color: #666;
+  font-weight: bold;
 }
-.loginBox .el-input input{
-    border-radius: 4px;
+.lr-title p {
+  font-size: 12px;
+  color: #999;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
-.loginBox h3{
-    text-align: right;
-    margin-bottom: 20px;
+.lr-btn {
+  color: #fff;
+  text-align: center;
+  letter-spacing: 5px;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 30px;
 }
-.loginBox h3 a{
-    font-size: 13px;
-    color: #999;
+
+.loginBox .el-input {
+  margin-bottom: 20px;
+}
+.loginBox .el-alert {
+  top: -18px;
+  background: #888;
+}
+.loginBox .el-input input {
+  border-radius: 4px;
+}
+.loginBox h3 {
+  text-align: right;
+  margin-bottom: 20px;
+}
+.loginBox h3 a {
+  font-size: 13px;
+  color: #999;
+}
+
+.loginBox .loginFooter {
+  max-width: 320px;
+  padding: 30px 40px;
+  background: #ddd;
+  text-align: center;
+  margin-left: -40px;
+  margin-right: -40px;
+  visibility: hidden;
 }
 </style>

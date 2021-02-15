@@ -8,7 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
-
+var conf = require("../static/config.json")
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
