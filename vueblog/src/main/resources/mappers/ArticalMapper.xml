@@ -41,10 +41,8 @@
             ta.title AS "title",
             ta.summary AS "summary",
             ta.image AS "image",
-            ta.content AS "content",
             ta.liked AS "liked",
             ta.lastedit AS "lastEdit",
-            ta.deleted AS "deleted",
             ta.createtime AS "createTime",
             ta.reviewed AS "reviewed",
             ta.tag AS "tag",
@@ -55,6 +53,7 @@
                 LEFT JOIN t_user tu on tu.id = ta.user
         WHERE
             ta.deleted = "N"
+        order by createTime desc
     </select>
 
     <update id="update">
