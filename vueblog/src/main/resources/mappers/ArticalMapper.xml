@@ -2,20 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="tech.xiby.vueblog.mappers.ArticalMapper">
     <select id="get" resultType="tech.xiby.vueblog.domain.po.ArticalInfo">
-        select
-            id as "id",
-            user as "user",
-            title as "title",
-            summary as "summary",
-            content as "content",
-            liked as "liked",
-            lastedit as "lastEdit",
-            deleted as "deleted",
-            createtime as "createTime"
-        from
-            t_artical
-        where
-            id = #{id} and deleted = "N"
+        SELECT
+            ta.id AS "id",
+            ta.user AS "user",
+            tu.name AS "userName",
+            ta.title AS "title",
+            ta.summary AS "summary",
+            ta.image AS "image",
+            ta.content AS "content",
+            ta.liked AS "liked",
+            ta.lastedit AS "lastEdit",
+            ta.deleted AS "deleted",
+            ta.createtime AS "createTime",
+            ta.reviewed AS "reviewed",
+            ta.tag AS "tag",
+            tt. NAME AS "tagName"
+        FROM
+            t_artical ta
+                LEFT JOIN t_tag tt ON tt.id = ta.tag
+                LEFT JOIN t_user tu on tu.id = ta.user
+        WHERE
+            ta.id = #{id} and ta.deleted = "N"
     </select>
     <insert id="save" parameterType="tech.xiby.vueblog.domain.po.ArticalInfo">
         insert into
@@ -24,4 +31,35 @@
         values
         (#{user}, #{title}, #{summary}, #{content}, NOW(), NOW())
     </insert>
+
+    <select id="list" parameterType="tech.xiby.vueblog.domain.dto.ArticalSearchParam"
+            resultType="tech.xiby.vueblog.domain.po.ArticalInfo">
+        SELECT
+            ta.id AS "id",
+            ta.user AS "user",
+            tu.name AS "userName",
+            ta.title AS "title",
+            ta.summary AS "summary",
+            ta.image AS "image",
+            ta.content AS "content",
+            ta.liked AS "liked",
+            ta.lastedit AS "lastEdit",
+            ta.deleted AS "deleted",
+            ta.createtime AS "createTime",
+            ta.reviewed AS "reviewed",
+            ta.tag AS "tag",
+            tt. NAME AS "tagName"
+        FROM
+            t_artical ta
+                LEFT JOIN t_tag tt ON tt.id = ta.tag
+                LEFT JOIN t_user tu on tu.id = ta.user
+        WHERE
+            ta.deleted = "N"
+    </select>
+
+    <update id="update">
+
+    </update>
+
+    <update id="delete"></update>
 </mapper>

@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 import tech.xiby.vueblog.domain.dto.ArticalSearchParam;
 import tech.xiby.vueblog.domain.po.ArticalInfo;
 
+import java.util.List;
+
 /**
  * 文章mapper
  *
@@ -33,7 +35,7 @@ public interface ArticalMapper {
      * @param param
      * @return
      */
-    PageInfo<ArticalInfo> list(ArticalSearchParam param);
+    List<ArticalInfo> list(ArticalSearchParam param);
 
     /**
      * 更新文章信息

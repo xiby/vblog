@@ -1,5 +1,6 @@
 package tech.xiby.vueblog.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,6 +8,8 @@ import tech.xiby.vueblog.domain.dto.ArticalSearchParam;
 import tech.xiby.vueblog.domain.po.ArticalInfo;
 import tech.xiby.vueblog.mappers.ArticalMapper;
 import tech.xiby.vueblog.service.IArticalService;
+
+import java.util.List;
 
 /**
  * 文章服务实现
@@ -32,7 +35,9 @@ public class ArticalServiceImpl implements IArticalService {
 
     @Override
     public PageInfo<ArticalInfo> list(ArticalSearchParam param) {
-        return null;
+        PageHelper.startPage(param.getPageNum(), param.getPageSize());
+        List<ArticalInfo> ret = articalMapper.list(param);
+        return new PageInfo<>(ret);
     }
 
     @Override

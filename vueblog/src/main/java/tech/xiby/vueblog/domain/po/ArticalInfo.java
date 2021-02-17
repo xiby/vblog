@@ -34,6 +34,11 @@ public class ArticalInfo {
     private String summary;
 
     /**
+     * 简介图片地址
+     */
+    private String image;
+
+    /**
      * 文章内容
      */
     private String content;
@@ -42,6 +47,16 @@ public class ArticalInfo {
      * 点赞数
      */
     private int liked;
+
+    /**
+     * tagid
+     */
+    private Long tag;
+
+    /**
+     * tag名称
+     */
+    private String tagName;
 
     /**
      * 上次编辑时间
@@ -57,6 +72,11 @@ public class ArticalInfo {
      * 删除标志
      */
     private String deleted;
+
+    /**
+     * 浏览量
+     */
+    private Long reviewed;
 
     public Long getId() {
         return id;
@@ -136,5 +156,37 @@ public class ArticalInfo {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Long getReviewed() {
+        return reviewed;
+    }
+
+    public void setReviewed(Long reviewed) {
+        this.reviewed = reviewed;
+    }
+
+    public Long getTag() {
+        return tag;
+    }
+
+    public void setTag(Long tag) {
+        this.tag = tag;
+    }
+
+    public String getTagName() {
+        return tagName;
+    }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
