@@ -23,6 +23,14 @@ export default new Router({
 				auth: false
 			},
 			name: 'login'
+    },
+    {
+      path: '/detail',
+      component: resolve => require(['../pages/Detail.vue'], resolve),
+      meta:{
+
+      },
+      name: 'detail'
     }
   ]
 })

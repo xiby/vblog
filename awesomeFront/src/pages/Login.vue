@@ -8,7 +8,7 @@
         <div v-if="login == 1" class="loginBox">
           <div class="lr-title">
             <h1>登录</h1>
-            <p>新用户<a href="#/login?login=0" class="tcolors">注册</a></p>
+            <p>新用户？<a href="#/login?login=0" class="tcolors">注册</a></p>
           </div>
           <el-alert
             v-show="loginErr"
@@ -143,6 +143,9 @@ export default {
   font-size: 26px;
   padding-top: 50px;
   margin-bottom: 20px;
+}
+.loginTitle a{
+  color: #000;
 }
 .loginBox {
   background: #fff;
